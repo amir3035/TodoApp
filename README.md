@@ -1,70 +1,49 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+    About
+    Welcome to the Todos App, a simple and intuitive task management application designed to help you stay organized and productive. Whether you're managing daily to-do lists, keeping track of important tasks, or planning upcoming events, the Todos App is here to streamline your workflow and keep you on top of your responsibilities.
 
-## Available Scripts
+    Key Features
 
-In the project directory, you can run:
+    1. Add and Manage Tasks:
+       Easily add new tasks to your to-do list. Once added, you can mark them as completed when done or remove them if no longer needed.
+    2. Priority Settings:
+       Prioritize your tasks by assigning different levels of importance. Focus on high-priority tasks and ensure you never miss a deadline.
+    3. Filter and Search:
+       Quickly find specific tasks by using the filter and search options. You can filter tasks by category, status, or due date.
+    4.User-Friendly Interface:
+       The app features a clean and intuitive user interface, making it easy to navigate and manage your tasks effectively.
+    5.Responsive Design:
+       Access your to-do list from any device, be it your desktop, tablet, or smartphone. The app is designed to provide a seamless experience across all platforms.
+    
+    
+    How to Use:
 
-### `npm start`
+    Add a Task: 
+       To add a new task, simply click on the "Add Task" button and enter the task details, such as the title, description. Click "Save" to add the task to your list.
+    Mark Completed:
+       When you've completed a task, click on the checkbox next to it to mark it as done. The task will be moved to the completed list.
+    Delete a Task:\
+      If you no longer need a task, you can delete it by clicking the delete icon next to the task.
+    Set Priorities:
+      Assign priorities to tasks by selecting the priority level when adding or editing a task. Use priorities to stay focused on what matters most.
+    Filter and Search:
+      Utilize the filter and search options to find tasks quickly. Filter tasks based on priorities, or Name. The search bar allows you to search for specific task titles or descriptions.
+    Stay Organized:
+      Use the Todos App consistently to maintain an organized task list. Regularly update completed tasks and add new ones to keep your to-do list up-to-date.
+  
+  Technologies Used
+     React: Front-end JavaScript library for building user interfaces.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+     React Router: Library for handling routing in a single-page application.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+     Node js: For Backend.
 
-### `npm test`
+     MongoDB: database Mangaement.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+  License
+     This project is licensed under the MIT License - see the LICENSE file for details.  
 
-### `npm run build`
+  Contact
+     For any inquiries or support, please email me at amir.hussain3035@gmail.com.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+     Happy tasking with the Todo App! 
