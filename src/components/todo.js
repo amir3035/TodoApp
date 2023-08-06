@@ -23,7 +23,7 @@ const Todo = (props) => {
 
     const deletetodo=async(id)=>{
       console.log('id',id)
-      fetch(`api/todos/${id}`, { method: 'DELETE' })
+      fetch(`api/todos/deletetask/${id}`, { method: 'DELETE' })
         .then(() => fetchtodos(),
         console.log({ status: 'Delete successful' }));
         
@@ -47,7 +47,7 @@ const Todo = (props) => {
     }
 
     const fetchtodos=async ()=>{
-        fetch('api/todos', {
+        fetch('api/todos/gettask', {
           method: 'GET',
           mode: 'cors',
           headers: {
@@ -61,6 +61,7 @@ const Todo = (props) => {
           return response.json()
         })
         .then(data => {
+          console.log('data',data.data)
           settododata(data.data)
         })
     }
@@ -80,9 +81,9 @@ const Todo = (props) => {
     }
 
   return (
-    
+    <>
 <div className='container py-3' style={{paddingTop:"50px"}}>
-<Form.Control style={{border: '2px solid rgba(58, 166, 179, 0.8)', width: '20%'}} className=' rounded-pill' icon='search'
+<Form.Control style={{border: '2px solid rgba(58, 166, 179, 0.8)',height:'30px', width: '30%'}} className=' rounded-pill' icon='search'
                 placeholder='Search...'
                 onChange={(e) => searchItems(e.target.value)}
             />
@@ -115,7 +116,7 @@ const Todo = (props) => {
   </div>
   )))}
     </div>
-    
+  </>
   )
 }
 

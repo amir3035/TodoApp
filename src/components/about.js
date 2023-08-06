@@ -1,7 +1,10 @@
 import React from 'react'
+import Header from './header'
 
 const about = () => {
   return (
+    <>
+    <Header></Header>
     <div className='container py-5 my-5'>
       <h1>About</h1>
       <p>Welcome to the Todos App, a simple and intuitive task management application designed to help you stay organized and productive.
@@ -21,7 +24,9 @@ const about = () => {
       <p><h5>Stay Organized:</h5> Use the Todos App consistently to maintain an organized task list. Regularly update completed tasks and add new ones to keep your to-do list up-to-date.</p>
        <h6 className='container py-2'> productive and organized with the Todos App. Start managing your tasks efficiently and accomplish your goals effectively. Happy tasking!</h6>
     </div>
+    </>
   )
+  
 }
 
 export default about

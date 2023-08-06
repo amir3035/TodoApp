@@ -1,10 +1,11 @@
 import './App.css';
-import Header from './components/header';
+//import Header from './components/header';
 import Footer from './components/footer';
 import Dashbord from './components/dashbord';
 import About from './components/about';
 import Todo from './components/todo';
 import NoPage from './components/noPage';
+import LoginForm from './components/login';
 import {
   BrowserRouter as Router,
   Routes,
@@ -17,11 +18,11 @@ function App() {
   return (
     <>
     <Router>
-    <Header></Header>
     <br />
       <Routes>
-        <Route exact path="/" element={<Dashbord/>}>
-         <Route exact path="/todo" element={<Todo/>}/>
+        <Route exact path="/" element={<LoginForm/>}/>
+        <Route exact path="/dashboard" element={<Dashbord/>}>
+         <Route exact path="/dashboard/todo" element={<Todo/>}/>
         </Route>  
         <Route exact path="/about" element={<About/>} />
         <Route exact path='*' element={<NoPage/>}/>

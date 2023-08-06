@@ -4,6 +4,7 @@ import Form from 'react-bootstrap/Form';
 import Todo from './todo';
 import { useState,useEffect } from 'react';
 import axios from 'axios';
+import Header from './header';
 
 //import {fetchtodos} from './todo'
 // import {
@@ -74,6 +75,7 @@ export default function Dashbord() {
   }
   return (
     <>
+    <Header></Header>
     <div className='container mt-5'>
       <Form onSubmit={handelesubmit}>
       <Form.Group className="mb-3" controlId="formBasicEmail">
