@@ -1,5 +1,6 @@
 import React from 'react'
 import Header from './header'
+import Footer from './footer'
 
 const about = () => {
   return (
@@ -24,6 +25,7 @@ const about = () => {
       <p><h5>Stay Organized:</h5> Use the Todos App consistently to maintain an organized task list. Regularly update completed tasks and add new ones to keep your to-do list up-to-date.</p>
        <h6 className='container py-2'> productive and organized with the Todos App. Start managing your tasks efficiently and accomplish your goals effectively. Happy tasking!</h6>
     </div>
+    <Footer /> 
     </>
   )
   

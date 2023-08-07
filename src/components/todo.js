@@ -12,10 +12,10 @@ const Todo = (props) => {
     const [searchInput, setSearchInput] = useState('');
     const [filteredResults, setFilteredResults] = useState([]);
 
-    useEffect(()=>{
-        fetchtodos();
+    // useEffect(()=>{
+    //     fetchtodos();
         
-    },[]);
+    // },[]);
     useEffect(()=>{
       fetchtodos();
     },[props])
@@ -23,7 +23,13 @@ const Todo = (props) => {
 
     const deletetodo=async(id)=>{
       console.log('id',id)
-      fetch(`api/todos/deletetask/${id}`, { method: 'DELETE' })
+      fetch(`api/todos/deletetask/${id}`, { 
+        method: 'DELETE',
+        headers: {
+          'authorization': `Bearer ${localStorage.getItem('token')}`, // Include the token in the 'Authorization' header
+          'Content-Type': 'application/json', // Set the content type if required by your server
+        },
+     })
         .then(() => fetchtodos(),
         console.log({ status: 'Delete successful' }));
         
@@ -47,12 +53,15 @@ const Todo = (props) => {
     }
 
     const fetchtodos=async ()=>{
+      //const token = localStorage.getItem('token');
+      //console.log(token,'token')
         fetch('api/todos/gettask', {
           method: 'GET',
           mode: 'cors',
           headers: {
             "accepts":"application/json",
             "access-control-allow-origin" : "*",
+            authorization: `Bearer ${localStorage.getItem('token')}`,
             //"Content-type": "application/json; charset=UTF-8"
           },
           //body: JSON.stringify(data),

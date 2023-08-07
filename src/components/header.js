@@ -2,7 +2,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
-//import { Link } from 'react-router-dom';
+import ProfileIcon from './profileIcon';
 
 function header() {
     let pos={
@@ -20,6 +20,9 @@ function header() {
             <Nav.Link as={Link} to="/about">about</Nav.Link>
           </Nav>
         </Container>
+        <Nav>
+        <ProfileIcon callBack={true}></ProfileIcon>
+        </Nav>
       </Navbar>
     </>
     // <Link to="/">Home</Link>

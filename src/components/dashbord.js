@@ -5,6 +5,7 @@ import Todo from './todo';
 import { useState,useEffect } from 'react';
 import axios from 'axios';
 import Header from './header';
+import Footer from './footer';
 
 //import {fetchtodos} from './todo'
 // import {
@@ -41,14 +42,21 @@ export default function Dashbord() {
     e.preventDefault();
     const jsonData = {title:title,description:desc};
 
-    axios.post('/api/todos', jsonData)
+    axios.post('/api/todos/createtask', jsonData,
+    {headers: {
+      "accepts":"application/json",
+      "access-control-allow-origin" : "*",
+      "Content-type": "application/json; charset=UTF-8",
+      'authorization':`Bearer ${localStorage.getItem('token')}`
+    },}
+    )
       // fetch("/api/todos",{
       //   method:'POST',
-      //   headers: {
-      //     "accepts":"application/json",
-      //     "access-control-allow-origin" : "*",
-      //     //"Content-type": "application/json; charset=UTF-8"
-      //   },
+        // headers: {
+        //   "accepts":"application/json",
+        //   "access-control-allow-origin" : "*",
+        //   //"Content-type": "application/json; charset=UTF-8"
+        // },
       //   body:jsonData
       // })
       
@@ -76,20 +84,36 @@ export default function Dashbord() {
   return (
     <>
     <Header></Header>
-    <div className='container mt-5'>
+    <div className='container mt-5 pt-2'>
       <Form onSubmit={handelesubmit}>
+
       <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label><h5>Title</h5></Form.Label>
+        {/* <Form.Label><h5>Title</h5></Form.Label> */}
+        <Form.Control 
+        required
+        type="Date" 
+        value={title}
+        defaultValue={'Enter Due Date'}
+        onChange={(e) => settitle(e.target.defaultValue)}
+        placeholder="Enter Due Date"
+        
+        style={{ width: '20%' }}
+        />
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+        {/* <Form.Label><h5>Title</h5></Form.Label> */}
         <Form.Control 
         required
         type="text" 
         value={title}
         onChange={(e) => settitle(e.target.value)}
-        placeholder="Enter Title" />
+        placeholder="Enter Title"
+        style={{ width: '50%' }}
+        />
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label><h5>Description</h5></Form.Label>
+        {/* <Form.Label><h5>Description</h5></Form.Label> */}
         <Form.Control 
         required
         type="text"
@@ -115,6 +139,7 @@ export default function Dashbord() {
       <Todo callBack={true} ></Todo>
     </div>): (<h2 className='container py-5 my-5'>Press show button to display</h2>)
 }
+<Footer /> 
     </>
   )
 }

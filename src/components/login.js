@@ -1,8 +1,9 @@
 import { useState } from "react"
 import React from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
+import { Link,useNavigate } from 'react-router-dom';
 
 
 const LoginForm=()=>{
@@ -10,18 +11,18 @@ const LoginForm=()=>{
     const navigate = useNavigate();
     const [email,setemail]=useState('');
     const [password,setpassword]=useState('');
-    const [error,seterror]=useState()
+    // const [error,seterror]=useState()
 
-    function isValidEmail(email) {
-        return /\S+@\S+\.\S+/.test(email);
-      }
+    // function isValidEmail(email) {
+    //     return /\S+@\S+\.\S+/.test(email);
+    //   }
 
       const handleChange = event => {
-        if (!isValidEmail(event.target.value)) {
-          seterror('email is invalid');
-        } else {
-          seterror(null);
-        }
+        // if (!isValidEmail(event.target.value)) {
+        //   seterror('email is invalid');
+        // } else {
+        //   seterror(null);
+        // }
     
         setemail(event.target.value);
       };
@@ -35,20 +36,24 @@ const handleSubmit=async(e)=>{
           '/api/todos/login',
           jsonData
         );
-  
         // Assuming the API returns a token upon successful login
-        const token = response.data.token;
-  
+        const token = response.data.accessToken;
         // Store the token in the local storage
         localStorage.setItem('token', token);
-  
-        // Redirect to the dashboard or home page after successful login
-        // Replace '/dashboard' with your desired route
-        navigate('/dashboard')
+        navigate('/dashboard');
       } catch (error) {
-        console.error('Login error:', error);
-        // Handle login error, e.g., show an error message
-      }
+        if (error.response) {
+          // If the server responded with an error status code (e.g., 404 or 401)
+          const errorMessage = error.response.data.message;
+          alert(errorMessage); // Show the error message as an alert
+          // You can also update the state to display the error message in the UI
+          // setErrorMessage(errorMessage);
+        } else {
+          // If the request didn't reach the server (e.g., network error)
+          // Handle network or other errors
+          alert('An error occurred. Please try again later.');
+        }
+}
 }
 
 return(
@@ -74,7 +79,7 @@ return(
                          onChange={handleChange}
                          required
                          />
-                         {error && <h6 style={{color: '#ff4b44'}}>{error}</h6>}
+                         {/* {error && <h6 style={{color: '#ff4b44'}}>{error}</h6>} */}
                       </Form.Group>
 
                       <Form.Group
@@ -82,7 +87,8 @@ return(
                         controlId="formBasicPassword"
                       >
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" 
+                        <Form.Control type="password"
+                        autoComplete="current-password"
                         placeholder="Password" 
                         value={password}
                         onChange={(e)=>setpassword(e.target.value)}
@@ -108,9 +114,8 @@ return(
                     <div className="mt-3">
                       <p className="mb-0  text-center">
                         Don't have an account?{" "}
-                        <a href="{''}" className="text-primary fw-bold">
-                          Sign Up
-                        </a>
+                        <Link to="/register" className="text-primary fw-bold">
+                          Sign Up</Link>
                       </p>
                     </div>
                   </div>

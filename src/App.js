@@ -1,34 +1,46 @@
 import './App.css';
 //import Header from './components/header';
-import Footer from './components/footer';
+//import Footer from './components/footer';
+import Register from './components/register';
 import Dashbord from './components/dashbord';
 import About from './components/about';
 import Todo from './components/todo';
 import NoPage from './components/noPage';
+import Profile from './components/profile'
 import LoginForm from './components/login';
 import {
   BrowserRouter as Router,
   Routes,
   Route,
+  Navigate
 } from "react-router-dom";
 //import todo from './components/todo';
 
 
 function App() {
+  const isAuthenticated = () => {
+    const token = localStorage.getItem('token');
+    return token !== null;
+  };
   return (
     <>
     <Router>
     <br />
       <Routes>
         <Route exact path="/" element={<LoginForm/>}/>
-        <Route exact path="/dashboard" element={<Dashbord/>}>
+        <Route exact path="/register" element={<Register/>}/>
+        <Route
+          path="/dashboard"
+          element={isAuthenticated() ? <Dashbord /> : <Navigate to="/" replace />}
+        >
          <Route exact path="/dashboard/todo" element={<Todo/>}/>
         </Route>  
-        <Route exact path="/about" element={<About/>} />
+        <Route exact path="/profile" element={isAuthenticated()?<Profile/>:<Navigate to ="/" replace/>}/>
+        <Route exact path="/about" element={isAuthenticated()?<About/>:<Navigate to ="/" replace/>} />
         <Route exact path='*' element={<NoPage/>}/>
            </Routes>
            <br />
-      <Footer />
+      {/* <Footer /> */}
       </Router>
 
     </>
