@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation ,useNavigate} from 'react-router-dom'
-import Header from './header'
-import Footer from './footer'
 import APIConstants from '../constant/baseURL'
 import axios from 'axios'
-
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css';
 const Profile = () => {
     const location=useLocation()
     const navigate=useNavigate()
@@ -20,6 +19,7 @@ const Profile = () => {
 
     })
     let [confirmpass,setconfirmpass]=useState('')
+    let [Newpass,setNewpass]=useState('')
     useEffect(()=>{
         setuserdata(location.state)
         
@@ -57,9 +57,8 @@ const Profile = () => {
         console.log('userdata',userdata)
       };
 
-
     const handleSave=async()=>{
-        if(userdata.password===confirmpass){
+        if(Newpass===confirmpass){
             try {
                 // Replace 'your-api-endpoint' with your actual API endpoint
                 const url = `${APIConstants.base_url}/api/todos/edituser`;
@@ -72,7 +71,7 @@ const Profile = () => {
                 formData.append('email', userdata.email);
                 formData.append('first_name', userdata.first_name);
                 formData.append('last_name', userdata.last_name);
-                formData.append('password', userdata.password);
+                formData.append('password', Newpass);
                 formData.append('phone_Number', userdata.phone_Number);
             
                 // Append the image file to the FormData
@@ -93,24 +92,84 @@ const Profile = () => {
                 
                 // Handle the response
                 console.log(response.data); // Log the response data or do something else with it
-                alert('user details updated')
+                confirmAlert({
+                  message:'User details updated',
+                  buttons: [
+                    {
+                      label: 'OK',
+                      //onClick: () => alert('Click No')
+                    }
+                  ]
+                })
                   navigate('/dashboard')
             } catch (error) {
                 // Handle any errors that occurred during the PATCH request
                 console.error('Error:', error);
-                alert('something went wrong')
+                confirmAlert({
+                  message:'Something went wrong.',
+                  buttons: [
+                    {
+                      label: 'OK',
+                      //onClick: () => alert('Click No')
+                    }
+                  ]
+                })
               }
         }else{
-            alert('Password does not match')
+            confirmAlert({
+              title:'Password does not match',
+              message:'Please enter password again',
+              buttons: [
+                {
+                  label: 'OK',
+                  //onClick: () => alert('Click No')
+                }
+              ]
+            })
         }
+    }
+    const deleteProfile=async()=>{
+      axios.delete(`${APIConstants.base_url}/api/todos/deleteuser`,
+    {headers: {
+      "accepts":"application/json",
+      "access-control-allow-origin" : "*",
+      "Content-type": "application/json; charset=UTF-8",
+      'authorization':`Bearer ${localStorage.getItem('token')}`
+    },}
+    )
+      
+      .then(() =>{  localStorage.removeItem('token');
+      navigate('/')})
+      .then((data) => {
+        // Handle response data here if needed
+        console.log('Response:', data);        
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
     }
     const handleEdit=async()=>{
         seteditMode(true)
     }
+    const handleDelete=async()=>{
+      confirmAlert({
+        title: 'Confirm to submit',
+        message: 'Are you sure to delete your Account!!!',
+        buttons: [
+          {
+            label: 'Yes',
+            onClick: () => deleteProfile()
+          },
+          {
+            label: 'No',
+          }
+        ]
+      })
+  }
  
    return (
     <div>
-    <Header></Header>
+    
     <div className="profile-container" style={styles.profileContainer}>
         {userdata && (
     <div style={styles.profileContent}>
@@ -162,8 +221,8 @@ const Profile = () => {
             <input
               type="password"
               name="password"
-              value={userdata.password}
-              onChange={handleInputChange}
+              value={Newpass}
+              onChange={(e)=>setNewpass(e.target.value)}
             />
           </div>
           <div className="input-field" style={styles.inputField}>
@@ -232,13 +291,15 @@ const Profile = () => {
           <button style={styles.editButton} className="edit-button" onClick={handleEdit}>
             Edit
           </button>
+          <button style={styles.editButtondel} className="edit-button" onClick={handleDelete}>
+            Delete
+          </button>
         </div>
       </div>
     )}
     </div>
     )}
   </div>
-  <Footer></Footer>
   </div>
   )
 }
@@ -301,6 +362,15 @@ const styles = {
     border: 'none',
     borderRadius: '5px',
     backgroundColor: '#007bff',
+    color: '#fff',
+    cursor: 'pointer',
+  },
+  editButtondel:{
+    padding: '10px 20px',
+    marginLeft:'12%',
+    border: 'none',
+    borderRadius: '5px',
+    backgroundColor: '#EA4E4E',
     color: '#fff',
     cursor: 'pointer',
   },

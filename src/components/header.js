@@ -14,7 +14,7 @@ function header() {
     <>
       <Navbar className='navbar fixed-top' bg="dark" data-bs-theme="dark" style={pos}>
         <Container>
-          <Navbar.Brand to="/home">My Todos App</Navbar.Brand>
+          <Navbar.Brand to="/home" style={{color:"yellow"}}>Task Management</Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link as={Link} to="/dashboard">Home</Nav.Link>
             <Nav.Link as={Link} to="/about">about</Nav.Link>
@@ -25,7 +25,6 @@ function header() {
         </Nav>
       </Navbar>
     </>
-    // <Link to="/">Home</Link>
   );
 }
 

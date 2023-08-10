@@ -3,6 +3,8 @@ import React from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 const Register = () => {
 
@@ -12,6 +14,7 @@ const Register = () => {
         last_name:'',
         email:'',
         password:'',
+        confirmpassword:'',
         phone_Number:'',
         image:null,
 
@@ -25,10 +28,10 @@ const Register = () => {
         }));
 
     }
-    useEffect(() => {
-        // This will log the updated userdata state whenever it changes
-        console.log('userdata', userdata);
-      }, [userdata]);
+    // useEffect(() => {
+    //     // This will log the updated userdata state whenever it changes
+    //     console.log('userdata', userdata);
+    //   }, [userdata]);
     const handleImageChange = (e) => {
         const selectedImage = e.target.files[0];
         console.log(selectedImage,"selectedImage")
@@ -49,6 +52,16 @@ const Register = () => {
         console.log('userdata',userdata)
       };
     const handleSubmit=async (e)=>{
+      if(userdata.password !== userdata.confirmpassword){
+      confirmAlert({
+        message:'Password does not match',
+        buttons: [
+          {
+            label: 'OK',
+          },
+        ]
+      })
+  }else{
      e.preventDefault();
      try{
         const formData = new FormData();
@@ -70,13 +83,32 @@ const Register = () => {
      catch(error){
         if(error.response){
             const errmess=await error.response.data.message;
-            alert(errmess)
+            //alert(errmess)
+            confirmAlert({
+              message:errmess,
+              buttons: [
+      
+                {
+                  label: 'OK',
+                },
+              ]
+            })
         }
         else{
-            alert("something went wrong")
+          confirmAlert({
+            title:'Confirm to submit',
+            message:'Something went wrong ',
+            buttons: [
+              {
+                label: 'OK',
+                //onClick: () => alert('Click No')
+              }
+            ]
+          })
         }
      }
     }
+  }
 
 
   return (
@@ -144,6 +176,19 @@ const Register = () => {
                         required
                         />
                       </Form.Group>
+                      <Form.Group
+                        className="mb-3"
+                        controlId="formBasicPassword"
+                      >
+                        <Form.Label>Confirm Password</Form.Label>
+                        <Form.Control type="password" 
+                        placeholder="confirm Password" 
+                        name="confirmpassword"
+                        value={userdata.confirmpassword}
+                        onChange={handleChange}
+                        required
+                        />
+                      </Form.Group>
 
                       <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label className="text-center">
@@ -177,6 +222,7 @@ const Register = () => {
                           Register
                         </Button>
                       </div>
+                      
                     </Form>
                    
                   </div>

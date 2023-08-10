@@ -4,30 +4,16 @@ import Form from 'react-bootstrap/Form';
 import Todo from './todo';
 import { useState,useEffect } from 'react';
 import axios from 'axios';
-import Header from './header';
-import Footer from './footer';
-
-//import {fetchtodos} from './todo'
-// import {
-//   BrowserRouter as Router,
-//   Routes,
-//   Route,
-// } from "react-router-dom";
 
 export default function Dashbord() {
   var [comp,setcomp]= useState(true)
-  var [btnClass,setbtnClass]=useState("#ff4b44")
+  var [btnClass,setbtnClass]=useState("#EA4E4E")
   var [hide,sethide]=useState('Hide')
   const [title, settitle]=useState()
   const [desc, setdesc]=useState()
+  let [date, setdate]=useState()
 
-  // const handleChange = (e) => {
-  //   var { name, value } = e.target.value;
-  //   setformdata({
-  //     ...formdata,
-  //     [name]: value,
-  //   });
-  // };
+
   useEffect(()=>{
     
 });
@@ -40,7 +26,7 @@ export default function Dashbord() {
 
   const handelesubmit = async(e)=>{
     e.preventDefault();
-    const jsonData = {title:title,description:desc};
+    const jsonData = {title:title,description:desc,dueDate:date};
 
     axios.post('/api/todos/createtask', jsonData,
     {headers: {
@@ -60,7 +46,7 @@ export default function Dashbord() {
       //   body:jsonData
       // })
       
-      .then((response) =>{settitle(""); setdesc(""); response.json();})
+      .then((response) =>{settitle(""); setdesc("");setdate(""); response.json();})
       .then((data) => {
         // Handle response data here if needed
         console.log('Response:', data);
@@ -79,26 +65,23 @@ export default function Dashbord() {
     }
     else{ setcomp(true)
     sethide('Hide')
-    setbtnClass("#ff4b44")}
+    setbtnClass("#EA4E4E")}
   }
   return (
     <>
-    <Header></Header>
     <div className='container mt-5 pt-2'>
       <Form onSubmit={handelesubmit}>
 
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        {/* <Form.Label><h5>Title</h5></Form.Label> */}
+      <Form.Group className="mb-3" controlId="formBasicEmail" style={{ display: 'flex' }}>
+  
         <Form.Control 
         required
         type="Date" 
-        value={title}
-        defaultValue={'Enter Due Date'}
-        onChange={(e) => settitle(e.target.defaultValue)}
-        placeholder="Enter Due Date"
-        
+        value={date}
+        onChange={(e) => setdate(e.target.value)}
         style={{ width: '20%' }}
         />
+        <Form.Label style={{paddingLeft:'10px',color:'#ff4b44'}}><h6>Due date</h6></Form.Label>
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         {/* <Form.Label><h5>Title</h5></Form.Label> */}
@@ -139,7 +122,6 @@ export default function Dashbord() {
       <Todo callBack={true} ></Todo>
     </div>): (<h2 className='container py-5 my-5'>Press show button to display</h2>)
 }
-<Footer /> 
     </>
   )
 }

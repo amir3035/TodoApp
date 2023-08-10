@@ -1,9 +1,10 @@
 import { useState } from "react"
 import React from 'react';
 import axios from 'axios';
-// import { useNavigate } from 'react-router-dom';
 import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
 import { Link,useNavigate } from 'react-router-dom';
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 
 const LoginForm=()=>{
@@ -29,15 +30,13 @@ const LoginForm=()=>{
 const handleSubmit=async(e)=>{
     e.preventDefault();
     const jsonData = {email:email,password:password};
-
     try {
-        // Replace 'https://jsonplaceholder.typicode.com' with your own backend API endpoint
         const response = await axios.post(
           '/api/todos/login',
           jsonData
         );
         // Assuming the API returns a token upon successful login
-        const token = response.data.accessToken;
+        const token = await response.data.accessToken;
         // Store the token in the local storage
         localStorage.setItem('token', token);
         navigate('/dashboard');
@@ -45,13 +44,31 @@ const handleSubmit=async(e)=>{
         if (error.response) {
           // If the server responded with an error status code (e.g., 404 or 401)
           const errorMessage = error.response.data.message;
-          alert(errorMessage); // Show the error message as an alert
+          //alert(errorMessage); // Show the error message as an alert
+          confirmAlert({
+            message:errorMessage,
+            buttons: [
+    
+              {
+                label: 'OK',
+              },
+            ]
+          })
           // You can also update the state to display the error message in the UI
           // setErrorMessage(errorMessage);
         } else {
           // If the request didn't reach the server (e.g., network error)
           // Handle network or other errors
-          alert('An error occurred. Please try again later.');
+          //alert('An error occurred. Please try again later.');
+          confirmAlert({
+            message:'An error occurred. Please try again later.',
+            buttons: [
+    
+              {
+                label: 'OK',
+              },
+            ]
+          })
         }
 }
 }

@@ -8,6 +8,7 @@ import Todo from './components/todo';
 import NoPage from './components/noPage';
 import Profile from './components/profile'
 import LoginForm from './components/login';
+import Layout from './components/layout';
 import {
   BrowserRouter as Router,
   Routes,
@@ -24,27 +25,33 @@ function App() {
   };
   return (
     <>
-    <Router>
-    <br />
-      <Routes>
-        <Route exact path="/" element={<LoginForm/>}/>
-        <Route exact path="/register" element={<Register/>}/>
-        <Route
-          path="/dashboard"
-          element={isAuthenticated() ? <Dashbord /> : <Navigate to="/" replace />}
-        >
-         <Route exact path="/dashboard/todo" element={<Todo/>}/>
-        </Route>  
-        <Route exact path="/profile" element={isAuthenticated()?<Profile/>:<Navigate to ="/" replace/>}/>
-        <Route exact path="/about" element={isAuthenticated()?<About/>:<Navigate to ="/" replace/>} />
-        <Route exact path='*' element={<NoPage/>}/>
-           </Routes>
-           <br />
-      {/* <Footer /> */}
+      <Router>
+        <br />
+        <Routes>
+          <Route path="" element={<LoginForm />} />
+          <Route exact path="/register" element={<Register />} />
+          <Route
+            exact path="/dashboard"
+            element={isAuthenticated() ? <Layout>
+              <Dashbord />
+            </Layout> : <Navigate to="/" replace />}
+          >
+            <Route exact path="/dashboard/todo" element={<Todo />} />
+          </Route>
+          <Route exact path="/profile" element={isAuthenticated() ? <Layout>
+            <Profile />
+          </Layout> : <Navigate to="/" replace />} />
+          <Route exact path="/about" element={isAuthenticated() ? <Layout>
+            <About />
+          </Layout> : <Navigate to="/" replace />} />
+          <Route exact path='*' element={<NoPage />} />
+        </Routes>
+        <br />
+        {/* <Footer /> */}
       </Router>
 
     </>
-  
+
   );
 }
 
