@@ -8,6 +8,8 @@ import Todo from './components/todo';
 import NoPage from './components/noPage';
 import Profile from './components/profile'
 import LoginForm from './components/login';
+import ForgotPassword from './components/forgotPassword';
+import ResetPassword from './components/resetPassword';
 import Layout from './components/layout';
 import {
   BrowserRouter as Router,
@@ -28,8 +30,10 @@ function App() {
       <Router>
         <br />
         <Routes>
-          <Route path="" element={<LoginForm />} />
+          <Route path="/" element={<LoginForm />} />
           <Route exact path="/register" element={<Register />} />
+          <Route exact path="/forgotpassword" element={<ForgotPassword />} />
+          <Route exact path="/resetpassword" element={<ResetPassword />} />
           <Route
             exact path="/dashboard"
             element={isAuthenticated() ? <Layout>

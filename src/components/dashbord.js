@@ -4,6 +4,8 @@ import Form from 'react-bootstrap/Form';
 import Todo from './todo';
 import { useState,useEffect } from 'react';
 import axios from 'axios';
+import { confirmAlert } from 'react-confirm-alert';
+
 
 export default function Dashbord() {
   var [comp,setcomp]= useState(true)
@@ -23,7 +25,7 @@ export default function Dashbord() {
 //     console.log('apidata',apiData);
 //   }
 // };
-
+  
   const handelesubmit = async(e)=>{
     e.preventDefault();
     const jsonData = {title:title,description:desc,dueDate:date};
@@ -46,9 +48,22 @@ export default function Dashbord() {
       //   body:jsonData
       // })
       
-      .then((response) =>{settitle(""); setdesc("");setdate(""); response.json();})
+      .then((response) =>{settitle(""); setdesc("");setdate("");})
       .then((data) => {
         // Handle response data here if needed
+        confirmAlert({
+          message:<div>
+          Task added successfully.<br />
+          We will notify you by email if you haven't completed it before the due date.<br />
+          Happy tasking!!
+        </div>,
+          buttons: [
+  
+            {
+              label: 'OK',
+            },
+          ]
+        })
         console.log('Response:', data);
         
       })

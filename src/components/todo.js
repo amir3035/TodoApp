@@ -7,6 +7,7 @@ import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+import APIConstants from '../constant/baseURL';
 
 const Todo = (props) => {
   const [tododata, settododata] = useState([])
@@ -127,8 +128,19 @@ const Todo = (props) => {
   }
   const handleImp = async (id,indiData)=>{
     // e.preventDefault();
-    let jsonData={important:!indiData};    
-    axios.patch(`/api/todos/edittask/${id}`, jsonData,
+    let jsonData={important:!indiData};
+    console.log('jsonData',jsonData)  
+    if(jsonData.important===true){
+      confirmAlert({
+        message: 'Selected task added to the top of the list',
+        buttons: [
+          {
+            label: 'OK',
+          },
+        ]
+      }) 
+    }  
+    axios.patch(`${APIConstants.base_url}/api/todos/edittask/${id}`, jsonData,
     {headers: {
       "accepts":"application/json",
       "access-control-allow-origin" : "*",
@@ -140,7 +152,7 @@ const Todo = (props) => {
       .then(() =>{fetchtodos();})
       .then((data) => {
         // Handle response data here if needed
-        console.log('Response:', data);        
+        console.log('Response:', data);       
       })
       .catch((error) => {
         console.error('Error:', error);
@@ -180,18 +192,18 @@ const Todo = (props) => {
                   </Card.Text>
                   <div style={{ display: 'flex' }}>
                     <Button variant="danger" onClick={() => deleteconfirm(data._id)}>Delete</Button>
-                    <div class="form-check" style={{ marginLeft: "60%" }}>
-                      <input class="form-check-input"
+                    <div className="form-check" style={{ marginLeft: "60%" }}>
+                      <input className="form-check-input"
                       style={{ border: "2px solid #ccc", borderRadius: "2px" }}
                        type="checkbox"              
                         name="important"                      
                         checked={data.important===true}
                         onClick={() =>{handleImp(data._id,data.important)}}
                       />
-                      <label class="form-check-label"><h5 style={{ color: "green" }}>Important</h5></label>
+                      <label className="form-check-label"><h5 style={{ color: "green" }}>Important</h5></label>
                     </div>
-                    <div class="form-check" style={{ marginLeft: "5%", }}>
-                      <input class="form-check-input"
+                    <div className="form-check" style={{ marginLeft: "5%", }}>
+                      <input className="form-check-input"
                        style={{ border: "2px solid #ccc", borderRadius: "2px" }} 
                        type="checkbox"                        
                         name="status"                     
@@ -199,7 +211,7 @@ const Todo = (props) => {
                         disabled={data.status===true}
                         onClick={() =>{handleComplete(data._id)}}
                       />
-                      <label class="form-check-label"><h5 style={{ color: "#ff4b44" }}>Completed</h5></label>
+                      <label className="form-check-label"><h5 style={{ color: "#ff4b44" }}>Completed</h5></label>
                     </div>
                   </div>
                 </Card.Body>

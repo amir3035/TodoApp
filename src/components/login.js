@@ -117,9 +117,9 @@ return(
                         controlId="formBasicCheckbox"
                       >
                         <p className="small">
-                          <a className="text-primary" href="#!">
+                          <Link to="/forgotpassword" className="text-primary">
                             Forgot password?
-                          </a>
+                          </Link>
                         </p>
                       </Form.Group>
                       <div className="d-grid">
