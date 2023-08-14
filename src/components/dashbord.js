@@ -5,6 +5,7 @@ import Todo from './todo';
 import { useState,useEffect } from 'react';
 import axios from 'axios';
 import { confirmAlert } from 'react-confirm-alert';
+import APIConstants from '../constant/baseURL';
 
 
 export default function Dashbord() {
@@ -30,7 +31,7 @@ export default function Dashbord() {
     e.preventDefault();
     const jsonData = {title:title,description:desc,dueDate:date};
 
-    axios.post('/api/todos/createtask', jsonData,
+    axios.post(`${APIConstants.base_url}/api/todos/createtask`, jsonData,
     {headers: {
       "accepts":"application/json",
       "access-control-allow-origin" : "*",
@@ -82,6 +83,21 @@ export default function Dashbord() {
     sethide('Hide')
     setbtnClass("#EA4E4E")}
   }
+  const getCurrentDate = () => {
+    const today = new Date();
+    const year = today.getFullYear();
+    let month = today.getMonth() + 1;
+    let day = today.getDate();
+    if (month < 10) {
+      month = `0${month}`;
+    }
+    if (day < 10) {
+      day = `0${day}`;
+    }
+  
+    return `${year}-${month}-${day}`;
+  };
+  
   return (
     <>
     <div className='container mt-5 pt-2'>
@@ -94,6 +110,7 @@ export default function Dashbord() {
         type="Date" 
         value={date}
         onChange={(e) => setdate(e.target.value)}
+        min={getCurrentDate()} 
         style={{ width: '20%' }}
         />
         <Form.Label style={{paddingLeft:'10px',color:'#ff4b44'}}><h6>Due date</h6></Form.Label>

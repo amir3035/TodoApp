@@ -14,6 +14,7 @@ const about = () => {
       <p><h6>Filter and Search:</h6> Quickly find specific tasks by using the filter and search options. You can filter tasks by category, status, or due date.</p>
       <p><h6>User-Friendly Interface:</h6> The app features a clean and intuitive user interface, making it easy to navigate and manage your tasks effectively.</p>
       <p><h6>Responsive Design:</h6> Access your to-do list from any device, be it your desktop, tablet, or smartphone. The app is designed to provide a seamless experience across all platforms.</p>
+      <p><h6>Task Reminder:</h6> You will get notify by mail if you have not completed task before due date .</p>
       <h1>How to Use:</h1>
       <p><h5>Add a Task:</h5> To add a new task, simply click on the "Add Task" button and enter the task details, such as the title, description, category, and due date. Click "Save" to add the task to your list.</p>
       <p><h5>Mark Completed:</h5> When you've completed a task, click on the checkbox next to it to mark it as done. The task will be moved to the completed list.</p>

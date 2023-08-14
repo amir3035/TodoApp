@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css';
+import APIConstants from "../constant/baseURL";
 
 const Register = () => {
 
@@ -38,7 +39,7 @@ const Register = () => {
             e.preventDefault();
             try {
                 const jsonData = { otp: userdata.otp, password: userdata.password }
-                const response = await axios.patch('/api/todos/resetpassword', jsonData)
+                const response = await axios.patch(`${APIConstants.base_url}/api/todos/resetpassword`, jsonData)
                 console.log(response)
                 confirmAlert({
                     message: response.data.message,

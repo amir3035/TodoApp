@@ -26,7 +26,7 @@ const Todo = (props) => {
 
   const deletetodo = async (id) => {
     console.log('id', id)
-    fetch(`api/todos/deletetask/${id}`, {
+    fetch(`${APIConstants.base_url}/api/todos/deletetask/${id}`, {
       method: 'DELETE',
       headers: {
         'authorization': `Bearer ${localStorage.getItem('token')}`, // Include the token in the 'Authorization' header
@@ -57,7 +57,7 @@ const Todo = (props) => {
   const fetchtodos = async () => {
     //const token = localStorage.getItem('token');
     //console.log(token,'token')
-    fetch('api/todos/gettask', {
+    fetch(`${APIConstants.base_url}/api/todos/gettask`, {
       method: 'GET',
       mode: 'cors',
       headers: {
@@ -92,7 +92,7 @@ const Todo = (props) => {
   const changeTaskStatus = (id) => {
    // e.preventDefault();
     const jsonData = {status:true};
-    axios.patch(`/api/todos/edittask/${id}`, jsonData,
+    axios.patch(`${APIConstants.base_url}/api/todos/edittask/${id}`, jsonData,
     {headers: {
       "accepts":"application/json",
       "access-control-allow-origin" : "*",

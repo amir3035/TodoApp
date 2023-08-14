@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css';
+import APIConstants from "../constant/baseURL";
 
 const Register = () => {
 
@@ -75,7 +76,7 @@ const Register = () => {
 
     // Append the image file to the FormData
     formData.append('image', userdata.image);
-     const responce=await axios.post('/api/todos/createuser',formData)
+     const responce=await axios.post(`${APIConstants.base_url}/api/todos/createuser`,formData)
      const token = responce.data.accessToken;
      await localStorage.setItem('token',token);
      navigate('/dashboard')
