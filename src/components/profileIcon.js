@@ -13,7 +13,7 @@ const ProfileIcon = (props) => {
       },[props])
       const fetchuser=useCallback (async()=>{
           try {
-              const response = await axios.get(`${APIConstants.base_url}/api/todos/getuser`,{
+              const response = await axios.get(`/api/todos/getuser`,{
                   headers: {
                   "accepts": "application/json",
                   "access-control-allow-origin": "*",

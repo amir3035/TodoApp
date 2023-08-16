@@ -61,7 +61,7 @@ const Profile = () => {
         if(Newpass===confirmpass){
             try {
                 // Replace 'your-api-endpoint' with your actual API endpoint
-                const url = `${APIConstants.base_url}/api/todos/edituser`;
+                const url = `/api/todos/edituser`;
                 
                 // Replace 'your-patch-data' with the data you want to send in the PATCH request
                 
@@ -129,7 +129,7 @@ const Profile = () => {
         }
     }
     const deleteProfile=async()=>{
-      axios.delete(`${APIConstants.base_url}/api/todos/deleteuser`,
+      axios.delete(`/api/todos/deleteuser`,
     {headers: {
       "accepts":"application/json",
       "access-control-allow-origin" : "*",

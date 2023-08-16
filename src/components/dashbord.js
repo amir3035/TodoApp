@@ -31,7 +31,7 @@ export default function Dashbord() {
     e.preventDefault();
     const jsonData = {title:title,description:desc,dueDate:date};
 
-    axios.post(`${APIConstants.base_url}/api/todos/createtask`, jsonData,
+    axios.post(`/api/todos/createtask`, jsonData,
     {headers: {
       "accepts":"application/json",
       "access-control-allow-origin" : "*",

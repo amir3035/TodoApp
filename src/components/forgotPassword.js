@@ -18,7 +18,7 @@ const ForgotPassword = () => {
       const jsonData={email:email}
       try {
         const response = await axios.post(
-          `${APIConstants.base_url}/api/todos/forgotPassword`,
+          `/api/todos/forgotPassword`,
           jsonData
         )
        if(response.data){

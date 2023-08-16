@@ -33,7 +33,7 @@ const handleSubmit=async(e)=>{
     const jsonData = {email:email,password:password};
     try {
         const response = await axios.post(
-          `${APIConstants.base_url}/api/todos/login`,
+          `/api/todos/login`,
           jsonData
         );
         // Assuming the API returns a token upon successful login
