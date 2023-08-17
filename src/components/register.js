@@ -82,7 +82,7 @@ const Register = () => {
      const responce=await axios.post(`${APIConstants.base_url}/api/todos/createuser`,formData)
      const token = responce.data.accessToken;
      await localStorage.setItem('token',token);
-     navigate('/dashboard')
+     navigate("/dashboard");
      }
      catch(error){
         if(error.response){          

@@ -2,7 +2,7 @@ import { useState } from "react"
 import React from 'react';
 import axios from 'axios';
 import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
-import { Link,useNavigate } from 'react-router-dom';
+import { Link,useNavigate, } from 'react-router-dom';
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import APIConstants from "../constant/baseURL";
@@ -37,11 +37,9 @@ const handleSubmit=async(e)=>{
           `${APIConstants.base_url}/api/todos/login`,
           jsonData
         );
-        // Assuming the API returns a token upon successful login
-        const token = await response.data.accessToken;
-        // Store the token in the local storage
-        localStorage.setItem('token', token);
-        navigate('/dashboard');
+        const token = response.data.accessToken;
+        await localStorage.setItem('token',token);
+        navigate("/dashboard");
       } catch (error) {
         if (error.response) {
           // If the server responded with an error status code (e.g., 404 or 401)
@@ -49,8 +47,7 @@ const handleSubmit=async(e)=>{
           //alert(errorMessage); // Show the error message as an alert
           confirmAlert({
             message:errorMessage,
-            buttons: [
-    
+            buttons: [    
               {
                 label: 'OK',
               },
