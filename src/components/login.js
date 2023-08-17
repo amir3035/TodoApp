@@ -11,6 +11,7 @@ import APIConstants from "../constant/baseURL";
 const LoginForm=()=>{
 
     const navigate = useNavigate();
+    const [isAuth,setisAuth]=useState(false)
     const [email,setemail]=useState('');
     const [password,setpassword]=useState('');
     // const [error,seterror]=useState()
@@ -31,7 +32,7 @@ const LoginForm=()=>{
 const handleSubmit=async(e)=>{
     e.preventDefault();
     const jsonData = {email:email,password:password};
-    //console.log('baseurl',`${APIConstants.base_url}`)
+    setisAuth(true)
     try {
         const response = await axios.post(
           `${APIConstants.base_url}/api/todos/login`,
@@ -43,6 +44,7 @@ const handleSubmit=async(e)=>{
       } catch (error) {
         if (error.response) {
           // If the server responded with an error status code (e.g., 404 or 401)
+          setisAuth(false)
           const errorMessage = error.response.data.message;
           //alert(errorMessage); // Show the error message as an alert
           confirmAlert({
@@ -59,6 +61,7 @@ const handleSubmit=async(e)=>{
           // If the request didn't reach the server (e.g., network error)
           // Handle network or other errors
           //alert('An error occurred. Please try again later.');
+          setisAuth(false)
           confirmAlert({
             message:'An error occurred. Please try again later.',
             buttons: [
@@ -122,7 +125,7 @@ return(
                         </p>
                       </Form.Group>
                       <div className="d-grid">
-                        <Button variant="primary" type="submit">
+                        <Button variant="primary" type="submit" disabled={isAuth}>
                           Login
                         </Button>
                       </div>

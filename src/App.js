@@ -21,8 +21,8 @@ import {
 
 
 function App() {
-  const isAuthenticated = () => {
-    const token = localStorage.getItem('token');
+  const isAuthenticated = async () => {
+    const token = await localStorage.getItem('token');
     return token !== null;
   };
   return (
