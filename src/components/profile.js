@@ -291,7 +291,7 @@ const Profile = () => {
           <button style={styles.editButton} className="edit-button" onClick={handleEdit}>
             Edit
           </button>
-          <button style={styles.editButtondel} className="edit-button" onClick={handleDelete}>
+          <button style={styles.deleteButton} className="edit-button" onClick={handleDelete}>
             Delete
           </button>
         </div>
@@ -312,9 +312,6 @@ const styles = {
     padding: '50px',
   },
   profileContent: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '20px',
     maxWidth: '800px',
     margin: '20px auto',
     padding: '20px',
@@ -325,29 +322,32 @@ const styles = {
   profileEdit: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'flex-start',
+    alignItems: 'center',
   },
   profileImageEdit: {
-    paddingBottom:'5%',
-    paddingTop:'10%'
+    padding: '5% 0',
   },
-  profileFields: {
-    flex: 1,
-  },
+  profileFields: {},
   inputField: {
-    marginBottom: '20px',
+    marginBottom: '10px',
   },
   profileImageContainer: {
-    flex: '0 0 150px',
-    width: '200px',
-    height: '200px',
-    borderRadius: '50%',
+    width: '150px',
+    height: '150px',
+    borderRadius: '30%',
     overflow: 'hidden',
+    margin: '0 auto 20px',
   },
   profileImage: {
     width: '100%',
     height: '100%',
     objectFit: 'cover',
+  },
+  buttonsContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    gap: '10px',
+    margin: '10px 0',
   },
   saveButton: {
     padding: '10px 20px',
@@ -365,26 +365,111 @@ const styles = {
     color: '#fff',
     cursor: 'pointer',
   },
-  editButtondel:{
+  deleteButton: {
     padding: '10px 20px',
-    marginLeft:'12%',
+    marginLeft:'10px',
     border: 'none',
     borderRadius: '5px',
     backgroundColor: '#EA4E4E',
     color: '#fff',
     cursor: 'pointer',
   },
-  profileReadOnly:{
-    display: 'flex',
-    alignItems: 'center',
-    gap: '50px',
+  profileReadOnly: {
     maxWidth: '1000px',
     margin: '20px auto',
     padding: '20px',
     border: '5px solid #ccc',
     borderRadius: '5px',
     backgroundColor: '#f9f9f9',
-  }
+  },
 };
+//old css
+// const styles = {
+//   profileContainer: {
+//     display: 'flex',
+//     flexDirection: 'column',
+//     alignItems: 'center',
+//     padding: '50px',
+//   },
+//   profileContent: {
+//     display: 'flex',
+//     alignItems: 'center',
+//     gap: '20px',
+//     maxWidth: '800px',
+//     margin: '20px auto',
+//     padding: '20px',
+//     border: '1px solid #ccc',
+//     borderRadius: '5px',
+//     backgroundColor: '#f9f9f9',
+//   },
+//   profileEdit: {
+//     display: 'flex',
+//     flexDirection: 'column',
+//     alignItems: 'flex-start',
+//   },
+//   profileImageEdit: {
+//     paddingBottom:'5%',
+//     paddingTop:'10%'
+//   },
+//   profileFields: {
+//     flex: 1,
+//   },
+//   inputField: {
+//     marginBottom: '20px',
+//   },
+//   profileImageContainer: {
+//     flex: '0 0 150px',
+//     width: '200px',
+//     height: '200px',
+//     borderRadius: '50%',
+//     overflow: 'hidden',
+//   },
+//   profileImage: {
+//     width: '100%',
+//     height: '100%',
+//     objectFit: 'cover',
+//   },
+//   saveButton: {
+//     padding: '10px 20px',
+//     border: 'none',
+//     borderRadius: '5px',
+//     backgroundColor: '#4caf50',
+//     color: '#fff',
+//     cursor: 'pointer',
+//   },
+//   editButton: {
+//     padding: '10px 20px',
+//     border: 'none',
+//     borderRadius: '5px',
+//     backgroundColor: '#007bff',
+//     color: '#fff',
+//     cursor: 'pointer',
+//   },
+//   editButtondel:{
+//     padding: '10px 20px',
+//     marginLeft:'12%',
+//     border: 'none',
+//     borderRadius: '5px',
+//     backgroundColor: '#EA4E4E',
+//     color: '#fff',
+//     cursor: 'pointer',
+//   },
+//   profileReadOnly:{
+//     display: 'flex',
+//     alignItems: 'center',
+//     gap: '50px',
+//     maxWidth: '1000px',
+//     margin: '20px auto',
+//     padding: '20px',
+//     border: '5px solid #ccc',
+//     borderRadius: '5px',
+//     backgroundColor: '#f9f9f9',
+//   }
+// };
+
+
+
+
+
 
 export default Profile

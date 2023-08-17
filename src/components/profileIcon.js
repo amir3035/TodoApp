@@ -47,8 +47,8 @@ const ProfileIcon = (props) => {
         <Dropdown style={{
             display: 'flex',
             alignItems: 'center',
-            marginRight: '30px',
-            paddingRight: '30px',
+            marginRight: '10vh',//change px to vh
+            paddingRight: '10vh',
         }}>
             <Dropdown.Toggle style={{ background: '#282626' }} variant="success" id="profile-dropdown">
                 <img src={image}

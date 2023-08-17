@@ -192,7 +192,7 @@ const Todo = (props) => {
                   </Card.Text>
                   <div style={{ display: 'flex' }}>
                     <Button variant="danger" onClick={() => deleteconfirm(data._id)}>Delete</Button>
-                    <div className="form-check" style={{ marginLeft: "60%" }}>
+                    <div className="form-check" style={{ marginLeft: "10%" }}>
                       <input className="form-check-input"
                       style={{ border: "2px solid #ccc", borderRadius: "2px" }}
                        type="checkbox"              
@@ -202,7 +202,7 @@ const Todo = (props) => {
                       />
                       <label className="form-check-label"><h5 style={{ color: "green" }}>Important</h5></label>
                     </div>
-                    <div className="form-check" style={{ marginLeft: "5%", }}>
+                    <div className="form-check" style={{ marginLeft: "2%", }}>
                       <input className="form-check-input"
                        style={{ border: "2px solid #ccc", borderRadius: "2px" }} 
                        type="checkbox"                        
