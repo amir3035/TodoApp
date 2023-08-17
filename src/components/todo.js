@@ -72,7 +72,7 @@ const Todo = (props) => {
         return response.json()
       })
       .then(data => {
-        console.log('data', data.data)
+        //console.log('data', data.data)
         settododata(data.data)
       })
   }
