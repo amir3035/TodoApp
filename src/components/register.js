@@ -10,6 +10,7 @@ import APIConstants from "../constant/baseURL";
 const Register = () => {
 
     const navigate = useNavigate();
+    const [isButtonDisabled, setIsButtonDisabled] = useState(false);
     let [userdata,setuserdata]=useState({
         first_name:'',
         last_name:'',
@@ -54,6 +55,7 @@ const Register = () => {
       };
     const handleSubmit=async (e)=>{
       if(userdata.password !== userdata.confirmpassword){
+        e.preventDefault();
       confirmAlert({
         message:'Password does not match',
         buttons: [
@@ -62,11 +64,12 @@ const Register = () => {
           },
         ]
       })
+      setIsButtonDisabled(false);
   }else{
      e.preventDefault();
      try{
         const formData = new FormData();
-
+        setIsButtonDisabled(true);
     // Append the userdata fields to the FormData
     formData.append('email', userdata.email);
     formData.append('first_name', userdata.first_name);
@@ -82,9 +85,9 @@ const Register = () => {
      navigate('/dashboard')
      }
      catch(error){
-        if(error.response){
+        if(error.response){          
             const errmess=await error.response.data.message;
-            //alert(errmess)
+            setIsButtonDisabled(false);
             confirmAlert({
               message:errmess,
               buttons: [
@@ -96,6 +99,7 @@ const Register = () => {
             })
         }
         else{
+          setIsButtonDisabled(false);
           confirmAlert({
             title:'Confirm to submit',
             message:'Something went wrong ',
@@ -219,7 +223,7 @@ const Register = () => {
                       </Form.Group>
                       
                       <div className="d-grid">
-                        <Button variant="primary" type="submit">
+                        <Button variant="primary" type="submit" disabled={isButtonDisabled}>
                           Register
                         </Button>
                       </div>
