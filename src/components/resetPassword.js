@@ -39,7 +39,7 @@ const Register = () => {
             e.preventDefault();
             try {
                 const jsonData = { otp: userdata.otp, password: userdata.password }
-                const response = await axios.patch(`/api/todos/resetpassword`, jsonData)
+                const response = await axios.patch(`${APIConstants.base_url}/api/todos/resetpassword`, jsonData)
                 console.log(response)
                 confirmAlert({
                     message: response.data.message,

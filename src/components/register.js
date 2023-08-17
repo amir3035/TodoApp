@@ -76,7 +76,7 @@ const Register = () => {
 
     // Append the image file to the FormData
     formData.append('image', userdata.image);
-     const responce=await axios.post(`/api/todos/createuser`,formData)
+     const responce=await axios.post(`${APIConstants.base_url}/api/todos/createuser`,formData)
      const token = responce.data.accessToken;
      await localStorage.setItem('token',token);
      navigate('/dashboard')
