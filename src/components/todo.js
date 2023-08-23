@@ -200,7 +200,7 @@ const Todo = (props) => {
                         checked={data.important===true}
                         onClick={() =>{handleImp(data._id,data.important)}}
                       />
-                      <label className="form-check-label"><h5 style={{ color: "green" }}>Important</h5></label>
+                      <label className="form-check-label"><h6 style={{ color: "green" }}>Important</h6></label>
                     </div>
                     <div className="form-check" style={{ marginLeft: "2%", }}>
                       <input className="form-check-input"
@@ -211,7 +211,7 @@ const Todo = (props) => {
                         disabled={data.status===true}
                         onClick={() =>{handleComplete(data._id)}}
                       />
-                      <label className="form-check-label"><h5 style={{ color: "#ff4b44" }}>Completed</h5></label>
+                      <label className="form-check-label"><h6 style={{ color: "#ff4b44" }}>Completed</h6></label>
                     </div>
                   </div>
                 </Card.Body>

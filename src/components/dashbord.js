@@ -111,9 +111,9 @@ export default function Dashbord() {
         value={date}
         onChange={(e) => setdate(e.target.value)}
         min={getCurrentDate()} 
-        style={{ width: '20%' }}
+        style={{ width: '40%' }}
         />
-        <Form.Label style={{paddingLeft:'10px',color:'#ff4b44'}}><h6>Due date</h6></Form.Label>
+        <Form.Label style={{paddingLeft:'10px',color:'#ff4b44'}}><p style={{fontSize:'10px'}}>Due date</p></Form.Label>
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         {/* <Form.Label><h5>Title</h5></Form.Label> */}

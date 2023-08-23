@@ -22,8 +22,14 @@ import {
 
 function App() {
   const isAuthenticated = async () => {
-    const token = await localStorage.getItem('token');
-    return token !== null;
+    const token = localStorage.getItem('token');
+    if(token){
+      return true
+    }
+    else {
+      return false
+    }
+    //return token !== null;
   };
   return (
     <>
